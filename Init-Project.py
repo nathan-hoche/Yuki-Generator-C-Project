@@ -1,9 +1,26 @@
 #!/usr/bin/env python3
 
-import sys
 import os
+import json
 
 from component import pcolors as pcolor
+
+def import_config():
+    with open("config.json") as fd:
+        data = json.load(fd)
+    return(data)
+
+def get_file():
+    data_file = []
+    try:
+        content = os.listdir("Data")
+    except:
+        print(pcolor.red + "Folder Data was delete" + pcolor.white)
+        exit (0)
+    for entry in content:
+        if (entry.find(".c") != -1):
+            data_file.append(entry)
+    return data_file
 
 def Check_info(Name, Folder):
     try:
@@ -23,7 +40,16 @@ class Get_info():
     def __init__(self):
         self.name = None
         self.path = None
-        self.lib = 0
+        self.config = import_config()
+        self.lib = 1
+
+    def lib_selection(self):
+        if (self.config['Library'] and self.config['Library'] == 1):
+            data_file = get_file()
+            print(data_file)
+        else:
+            print(pcolor.yellow + "Library Desactivate" + pcolor.white)
+            self.lib = 0
     
     def launch_program(self):
         print(pcolor.blue + "----Starting Launchs----" + pcolor.white)
@@ -35,9 +61,11 @@ class Get_info():
             print("Enter The Project Location : ", end="")
             self.path = input()
             check = Check_info(self.name, self.path)
-
         print(pcolor.blue + "Project : " + self.name + " in location " + self.path + pcolor.white)
 
 
+Info = Get_info()
 
-Get_info().launch_program()
+Info.launch_program()
+#print("\n--------------------\n")
+Info.lib_selection()
