@@ -10,7 +10,7 @@
             "option" : "-l csfml-audio -l csfml-system -l csfml-graphics"
         }
     ],
-    "Src-file" : 1,
+    "Src-folder" : 1,
     "main-file" : {
         "activate" : 1,
         "name" : "main"

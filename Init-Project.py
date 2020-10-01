@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 
 import os
-import json
 
 from component import pcolors as pcolor
+from component import Config
+from Generator import Generator
 
-def import_config():
-    with open("config.json") as fd:
-        data = json.load(fd)
-    return(data)
+config = Config()
+generator = Generator()
 
 def get_file():
     data_file = []
@@ -62,18 +61,15 @@ def Check_choosen_file(choosen_file, data_file):
             return 0
     print(pcolor.green + "ALL IS VALIDATE" + pcolor.white)
     return 1
-    
 
 class Get_info():
     def __init__(self):
         self.name = None
         self.path = None
-        self.config = import_config()
-        self.lib = 1
         self.lib_choosen_file = []
 
     def lib_selection(self):
-        if (self.config['Library'] and self.config['Library'] == 1):
+        if (config.get_lib() == 1):
             data_file = get_file()
             print(pcolor.blue + "----Library File----" + pcolor.white)
             print_all_file(data_file)
@@ -85,11 +81,13 @@ class Get_info():
             self.lib_choosen_file = identify_file(choosen_file, data_file)
         else:
             print(pcolor.yellow + "Library Desactivate" + pcolor.white)
-            self.lib = 0
+
+    def launch_generation(self):
+        generator.init_generator(self.name, self.path)
+        generator.create_all_directories()
     
     def launch_program(self):
         print(pcolor.blue + "----Starting Launchs----" + pcolor.white)
-
         check = 0
         while (check == 0):
             print("\nEnter The Project Name : ", end="")
@@ -102,5 +100,9 @@ class Get_info():
 
 Info = Get_info()
 
-Info.launch_program()
-Info.lib_selection()
+if (config.set_config() == 0):
+    Info.launch_program()
+    Info.lib_selection()
+    print(pcolor.green + "\nAll entries are available!\n" + pcolor.white)
+    print(pcolor.blue + "Starting Generation" + pcolor.white)
+    Info.launch_generation()
