@@ -83,7 +83,7 @@ class Get_info():
             print(pcolor.yellow + "Library Desactivate" + pcolor.white)
 
     def launch_generation(self):
-        generator.init_generator(self.name, self.path)
+        generator.init_generator(self.name, self.path, config)
         generator.create_all_directories()
     
     def launch_program(self):
