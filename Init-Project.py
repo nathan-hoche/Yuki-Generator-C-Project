@@ -85,6 +85,7 @@ class Get_info():
     def launch_generation(self):
         generator.init_generator(self.name, self.path, config)
         generator.create_all_directories()
+        generator.cp_lib(self.lib_choosen_file)
     
     def launch_program(self):
         print(pcolor.blue + "----Starting Launchs----" + pcolor.white)

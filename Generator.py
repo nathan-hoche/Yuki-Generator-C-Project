@@ -1,4 +1,5 @@
 import os
+import shutil
 
 from component import pcolors as pcolor
 from component import Config
@@ -10,6 +11,9 @@ class Generator():
         self.project = None
         self.config = None
 
+    def cp_lib(self, lib_choosen):
+        for file_name in lib_choosen:
+            shutil.copy("Data/" + file_name, self.project + "/lib")
 
     def create_all_directories(self):
         if (self.path[len(self.path) - 1] != '/'):
