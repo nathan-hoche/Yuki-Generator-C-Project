@@ -12,7 +12,7 @@ This project is to generate a **C project architecture**, like:
 4. Main file
 5. Makefile
 
-So the generator can actively generate your library, makefile and include, following of project and wish! :wink:
+So the generator can actively generate your library, makefile and include, following of project and your wishes! :wink:
 
 The advantage of this generator is that you can easily make an optimized library. And which follow your necessity! :fire:
 
@@ -36,11 +36,10 @@ In Data folder you have 2 Makefile:
 * Makefile_lib -> Makefile for the library
 
 You can change this if you want **BUT** don't touch to lines between comments.
-:exclamation: They are modify, delete or fill for the generation!
+:exclamation: They are modified, deleted or filled during the generation!
 
 # Include :mouse:
-In Data folder you have Include.h
-Where you can add function declaration and other include.
+In Data folder you have Include.h where you can add functions declarations and others includes.
 
 # Library :fish:
-You can had all file of your complete lib inside the folder Data/lib/
+You can add all files of your complete lib inside the folder Data/lib/
