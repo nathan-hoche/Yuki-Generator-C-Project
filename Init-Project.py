@@ -14,7 +14,7 @@ def get_file():
     try:
         content = os.listdir("Data")
     except:
-        print(pcolor.red + "Folder \"Data\" was delete" + pcolor.white)
+        print(pcolor.red + "Folder \"Data\" was deleted." + pcolor.white)
         exit (0)
     for entry in content:
         if (entry.find(".c") != -1):
@@ -78,17 +78,19 @@ class Get_info():
                 print(pcolor.blue + "Write all ID of file that you want in your library:" + pcolor.white)
                 choosen_file = input()
                 check = Check_choosen_file(choosen_file, data_file)
-            self.lib_choosen_file = identify_file(choosen_file, data_file)
+            self.lib_choosen_file = identify_file(choosen_file.split(), data_file)
         else:
             print(pcolor.yellow + "Library Desactivate" + pcolor.white)
 
     def launch_generation(self):
         generator.init_generator(self.name, self.path, config)
         generator.create_all_directories()
-        generator.cp_lib(self.lib_choosen_file)
+        if (config.get_lib() == 1):
+            generator.cp_lib(self.lib_choosen_file)
+        generator.add_makefile()
     
     def launch_program(self):
-        print(pcolor.blue + "----Starting Launchs----" + pcolor.white)
+        print(pcolor.blue + "----Starting Generator----" + pcolor.white)
         check = 0
         while (check == 0):
             print("\nEnter The Project Name : ", end="")
@@ -96,8 +98,7 @@ class Get_info():
             print("Enter The Project Location : ", end="")
             self.path = input()
             check = Check_info(self.name, self.path)
-        print(pcolor.blue + "Project : " + self.name + " in location " + self.path + pcolor.white)
-
+        print(pcolor.blue + "Project : " + self.name + " in folder " + self.path + pcolor.white)
 
 Info = Get_info()
 

@@ -33,6 +33,12 @@ class Config():
     def get_include(self):
         return self.include
 
+    def get_main_file(self):
+        return self.main_file
+
+    def get_flags(self):
+        return self.make_option
+
     def set_config(self):
         try:
             self.lib = self.config['Library']
@@ -43,10 +49,7 @@ class Config():
             if (self.config['main-file']['activate'] == 1):
                 self.main_file = self.config['main-file']['name']
             if (self.config['Include']['activate'] == 1):
-                print("add in include")
                 self.include.append(self.config['Include']['name'])
-                self.include.append(self.config['Include']['protection'])
-                print(self.include)
         except:
             print(pcolors.red + "Config JSON invalid." + pcolors.white)
             return 1
