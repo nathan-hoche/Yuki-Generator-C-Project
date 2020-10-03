@@ -15,7 +15,7 @@ class Generator():
     def cp_lib(self, lib_choosen):
         self.lib_choosen = lib_choosen
         for file_name in lib_choosen:
-            shutil.copy("Data/" + file_name, self.project + "/lib")
+            shutil.copy("Data/lib/" + file_name, self.project + "/lib")
 
     def add_makefile(self):
         fd = open("Data/Makefile", 'r')

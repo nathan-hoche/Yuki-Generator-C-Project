@@ -12,7 +12,7 @@ generator = Generator()
 def get_file():
     data_file = []
     try:
-        content = os.listdir("Data")
+        content = os.listdir("Data/lib")
     except:
         print(pcolor.red + "Folder \"Data\" was deleted." + pcolor.white)
         exit (0)
