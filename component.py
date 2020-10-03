@@ -50,6 +50,7 @@ class Config():
                 self.main_file = self.config['main-file']['name']
             if (self.config['Include']['activate'] == 1):
                 self.include.append(self.config['Include']['name'])
+                self.include.append(self.config['Include']['protection'])
         except:
             print(pcolors.red + "Config JSON invalid." + pcolors.white)
             return 1

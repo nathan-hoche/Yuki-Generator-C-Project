@@ -66,6 +66,43 @@ class Generator():
                 if (line != None):
                     fd.write(line + "\n")
             fd.close()
+    
+    def add_include(self, lib_choosen):
+        name_lib = []
+        for lib_file in lib_choosen:
+            name_lib.append(lib_file.replace(".c", ""))
+    
+        fd = open("Data/Include.h", 'r')
+        content = fd.read().split("\n")
+        fd.close()
+
+        nb_line = 0
+        new_content = []
+        for line in content:
+            if (line == ""):
+                new_content.append(line)
+            elif (line.find("#include") != -1):
+                new_content.append(line)
+            elif (line.find('//') == -1):
+                for lib_file in name_lib:
+                    if (line.find(" " + lib_file + "(") != -1):
+                        new_content.append(line)
+            nb_line += 1
+
+        fd = open(self.project + "/include/" + self.config.get_include()[0] + ".h", "x")
+        if (self.config.get_include()[1] == 1):
+            fd.write("#ifndef " + self.config.get_include()[0].upper() + "_H_\n")
+            fd.write("#define " + self.config.get_include()[0].upper() + "_H_\n\n")
+        for line in new_content:
+            fd.write(line + "\n")
+        if (self.config.get_include()[1] == 1):
+            fd.write("\n#endif /* !" + self.config.get_include()[0].upper() + "_H_ */")
+        fd.close()
+
+    def add_main(self):
+        fd = open(self.project + "/" + self.config.get_main_file() + ".c", "x")
+        fd.write("int main(void)\n{\n\treturn (0);\n}")
+        fd.close()
 
     def create_all_directories(self):
         if (self.path[len(self.path) - 1] != '/'):

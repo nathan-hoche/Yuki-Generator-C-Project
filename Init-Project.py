@@ -88,6 +88,10 @@ class Get_info():
         if (config.get_lib() == 1):
             generator.cp_lib(self.lib_choosen_file)
         generator.add_makefile()
+        if (len(config.get_include()) != 0):
+            generator.add_include(self.lib_choosen_file)
+        if (config.get_main_file() != None):
+            generator.add_main()
     
     def launch_program(self):
         print(pcolor.blue + "----Starting Generator----" + pcolor.white)

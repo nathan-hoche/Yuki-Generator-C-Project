@@ -6,7 +6,7 @@ NAME	=		libmy.a
 
 OBJ		=		$(SRC:.c=.o)
 
-all:
+all:	
 		gcc -c $(SRC)
 		ar rc $(NAME) $(OBJ)
 		rm *.o
