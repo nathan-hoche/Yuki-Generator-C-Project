@@ -11,7 +11,7 @@ class pcolors:
     underline = '\033[4m'
 
 def import_config():
-    with open("config.json") as fd:
+    with open("Data/config.json") as fd:
         data = json.load(fd)
     return(data)
 

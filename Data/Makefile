@@ -3,7 +3,9 @@ SRC	=
 
 FLAGS	=
 
-MAKE_LIB = make -C ./lib/my/
+MAKE_LIB	= 	make -C ./lib/
+
+LDFLAGS		=	-L./lib -lmy
 #####################
 
 NAME	=		a.out
@@ -14,7 +16,7 @@ all:	$(OBJ)
 ### Do not touch ####
 		$(MAKE_LIB)
 #####################
-		gcc $(OBJ) -o $(NAME) $(FLAGS)
+		gcc $(OBJ) -o $(NAME) $(FLAGS) $(LDFLAGS)
 
 clean:
 		rm -f $(OBJ)

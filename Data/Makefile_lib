@@ -1,0 +1,22 @@
+### Do not touch ####
+SRC	=
+#####################
+
+NAME	=		libmy.a
+
+OBJ		=		$(SRC:.c=.o)
+
+all:
+		gcc -c $(SRC)
+		ar rc $(NAME) $(OBJ)
+		rm *.o
+
+clean:
+		rm -f $(OBJ)
+
+fclean:	clean
+		rm $(NAME)
+
+re: 	fclean all
+
+.PHONY: clean, fclean, re, all
